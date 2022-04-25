@@ -8,7 +8,7 @@ to be used with a Flask front-end in the future.
 import json
 from tinydb import TinyDB, Query
 
-db = TinyDB('service_log.db')
+db = TinyDB('app/db/service_log.db')
 
 
 def logCreate(db: TinyDB, car: str = None,
@@ -21,8 +21,7 @@ def logCreate(db: TinyDB, car: str = None,
 
 def logReadAll(db: TinyDB):
     """Read all entries in the database."""
-    for log in db:
-        print(log)
+    return list(db)
 
 
 def logUpdate(db: TinyDB, queryfield: str = None,
@@ -37,12 +36,18 @@ def logDelete(db: TinyDB, queryfield: str = None,
     db.remove(Query()[queryfield] == queryterm)
 
 
+"""
 db.truncate()  # clear database before testing
 logCreate(db, car='2010 Nissan Frontier', mileage=123456,
-          note='Oil Change - 5.5qt 5W30, K&N 1203F filter')
+          note='Oil Change - 5.5qt 5W30, K&N HP-1010 filter')
+logCreate(db, car='2010 Nissan Frontier', mileage=128456,
+          note='Oil Change - 5.5qt 5W30, K&N HP-1010 filter')
+logCreate(db, car='2010 Nissan Frontier', mileage=133456,
+          note='Oil Change - 5.5qt 5W30, K&N HP-1010 filter')
 logReadAll(db)
 logUpdate(db, queryfield='mileage', queryterm=123456,
           change={'mileage': 124567})
 logReadAll(db)
 logDelete(db, queryfield='mileage', queryterm=124567)
 logReadAll(db)
+"""
