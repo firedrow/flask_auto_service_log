@@ -11,10 +11,11 @@ from tinydb import TinyDB, Query
 db = TinyDB('app/db/service_log.db')
 
 
-def logCreate(db: TinyDB, car: str = None,
+def logCreate(db: TinyDB, date: str = None, car: str = None,
               mileage: int = None, note: str = None):
     """Create new record in the database."""
-    db.insert({'vehicle': car,
+    db.insert({'date': date,
+               'vehicle': car,
                'mileage': mileage,
                'note': note})
 
