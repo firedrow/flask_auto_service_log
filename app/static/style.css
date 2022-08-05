@@ -1,0 +1,49 @@
+/* https://divtable.com/table-styler/ */
+table.fixed {
+    width: 80%;
+    text-align: left;
+    table-layout: fixed;
+}
+table.fixed td, table.fixed th {
+    padding: 2px 4px;
+    overflow: hidden;
+}
+/* https://stackoverflow.com/questions/40134586/how-to-set-different-column-in-table-to-be-different-width-in-css */
+table.fixed td:nth-child(1), table.fixed th:nth-child(1) {
+    width: 70px;
+}
+table.fixed td:nth-child(2), table.fixed th:nth-child(2) {
+    width: 300px;
+}
+table.fixed td:nth-child(3), table.fixed th:nth-child(3) {
+    width: 70px;
+}
+table.fixed td:nth-child(5), table.fixed th:nth-child(5) {
+    width: 30px;
+}
+table.fixed tbody td {
+    font-size: 13px;
+}
+table.fixed td img {
+    width: 12px;
+    height: 12px;
+}
+table.fixed tr:nth-child(even) {
+    background: #D0E4F5;
+}
+table.fixed thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+}
+table.fixed thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+}
+table.fixed thead th:first-child {
+    border-left: none;
+}

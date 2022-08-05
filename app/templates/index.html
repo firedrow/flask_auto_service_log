@@ -11,58 +11,16 @@
         <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
         <link rel="manifest" href="static/site.webmanifest">
         <link rel="mask-icon" href="static/safari-pinned-tab.svg" color="#5bbad5">
-        <style>
-            /* https://divtable.com/table-styler/ */
-            table.fixed {
-                width: 80%;
-                text-align: left;
-                table-layout: fixed;
-            }
-            table.fixed td, table.fixed th {
-                padding: 2px 4px;
-                overflow: hidden;
-            }
-            /* https://stackoverflow.com/questions/40134586/how-to-set-different-column-in-table-to-be-different-width-in-css */
-            table.fixed td:nth-child(1), table.fixed th:nth-child(1) {
-                width: 70px;
-            }
-            table.fixed td:nth-child(2), table.fixed th:nth-child(2) {
-                width: 280px;
-            }
-            table.fixed td:nth-child(3), table.fixed th:nth-child(3) {
-                width: 70px;
-            }
-            table.fixed tbody td {
-                font-size: 13px;
-            }
-            table.fixed tr:nth-child(even) {
-                background: #D0E4F5;
-            }
-            table.fixed thead {
-                background: #1C6EA4;
-                background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-                background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-                background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-                border-bottom: 2px solid #444444;
-            }
-            table.fixed thead th {
-                font-size: 15px;
-                font-weight: bold;
-                color: #FFFFFF;
-                border-left: 2px solid #D0E4F5;
-            }
-            table.fixed thead th:first-child {
-                border-left: none;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="static/style.css">
     </head>
     <body>
         <h1>Automotive Service Logs</h1>
         <form action="/add" method="post">
             <input type="date" name="date" required>
             <select name="vehicle">
-                <option value="2008-Nissan-Frontier_1N6AD07W98C424691">2008 Nissan Frontier SE</option>
-                <option value="2010-Chevrolet-Traverse_VINNUMBER">2010 Chevrolet Traverse</option>
+                {% for car in cars %}
+                <option value="{{car}}">{{ car | splitpart(0, ' / ') }}</option>
+                {% endfor %}
             </select>
             <input name="mileage" type="text" size="9" required placeholder="mileage #">
             <input name="notes" type="text" size="50" required placeholder="notes about maintenance">
@@ -77,6 +35,7 @@
                         <th>Vehicle</th>
                         <th>Mileage</th>
                         <th>Notes</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,6 +45,10 @@
                         <td>{{log.vehicle}}</td>
                         <td>{{log.mileage}}</td>
                         <td>{{log.note}}</td>
+                        <td>
+                            <img src="static/pencil-solid.svg" />
+                            <a href="/del?milenum={{ log.mileage }}"><img src="static/trash-can-solid.svg" /></a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

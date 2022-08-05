@@ -22,7 +22,7 @@ def logCreate(db: TinyDB, date: str = None, car: str = None,
 
 def logReadAll(db: TinyDB):
     """Read all entries in the database."""
-    return list(db)
+    return sorted(db.all(), key=lambda x: x['date'], reverse=True)
 
 
 def logUpdate(db: TinyDB, queryfield: str = None,
@@ -35,20 +35,3 @@ def logDelete(db: TinyDB, queryfield: str = None,
               queryterm: str | int = None):
     """Delete a record in the database, based on the query."""
     db.remove(Query()[queryfield] == queryterm)
-
-
-"""
-db.truncate()  # clear database before testing
-logCreate(db, car='2010 Nissan Frontier', mileage=123456,
-          note='Oil Change - 5.5qt 5W30, K&N HP-1010 filter')
-logCreate(db, car='2010 Nissan Frontier', mileage=128456,
-          note='Oil Change - 5.5qt 5W30, K&N HP-1010 filter')
-logCreate(db, car='2010 Nissan Frontier', mileage=133456,
-          note='Oil Change - 5.5qt 5W30, K&N HP-1010 filter')
-logReadAll(db)
-logUpdate(db, queryfield='mileage', queryterm=123456,
-          change={'mileage': 124567})
-logReadAll(db)
-logDelete(db, queryfield='mileage', queryterm=124567)
-logReadAll(db)
-"""

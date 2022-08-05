@@ -4,6 +4,7 @@ COPY ./requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./run.py /code/
 COPY ./app /code/app/
+COPY ./app/db /code/app/db/
 COPY ./app/templates /code/app/templates/
 COPY ./app/static /code/app/static/
 CMD ["python", "/code/run.py"]
