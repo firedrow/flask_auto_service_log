@@ -23,6 +23,18 @@ def addLog():
     return redirect(url_for('index'))
 
 
+@app.route('/update', methods=['POST'])
+def updateLog():
+    """Modify an existing database entry, using information from the form."""
+    change = {'date': request.form['date'],
+              'vehicle': request.form['vehicle'],
+              'mileage': request.form['mileage'],
+              'note': request.form['notes']}
+    db.logUpdate(db.db, queryfield='mileage', queryterm=change['mileage'],
+                 change=change)
+    return redirect(url_for('index'))
+
+
 @app.route('/del', methods=['GET'])
 def delLog():
     """Delete log from the database."""

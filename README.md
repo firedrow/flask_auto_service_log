@@ -11,3 +11,5 @@ ToDo:
 - [x] Create entry in TinyDB from template
 - [x] Delete entry from TinyDB from template
 - [ ] Update entry in TinyDB from template
+  - [x] Match on mileage, updates date, vehicle, notes
+  - [ ] Able to update all fields
