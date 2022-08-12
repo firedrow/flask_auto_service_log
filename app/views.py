@@ -15,7 +15,7 @@ cars = [
 ]
 
 
-@app.route('/add', methods=['POST'])
+@app.route('/autolog/add', methods=['POST'])
 def addLog():
     """Add logs to the database, using information from the form."""
     db.logCreate(db.db, date=request.form['date'], car=request.form['vehicle'],
@@ -23,7 +23,7 @@ def addLog():
     return redirect(url_for('index'))
 
 
-@app.route('/update', methods=['POST'])
+@app.route('/autolog/update', methods=['POST'])
 def updateLog():
     """Modify an existing database entry, using information from the form."""
     change = {'date': request.form['date'],
@@ -35,7 +35,7 @@ def updateLog():
     return redirect(url_for('index'))
 
 
-@app.route('/del', methods=['GET'])
+@app.route('/autolog/del', methods=['GET'])
 def delLog():
     """Delete log from the database."""
     milenum = request.args['milenum']
@@ -43,7 +43,7 @@ def delLog():
     return redirect(url_for('index'))
 
 
-@app.route('/')
+@app.route('/autolog/')
 def index():
     """Return the index page."""
     return render_template('index.html', cars=cars, logs=db.logReadAll(db.db))
