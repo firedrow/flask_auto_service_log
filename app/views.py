@@ -43,7 +43,7 @@ def delLog():
     return redirect(url_for('index'))
 
 
-@app.route('/autolog/')
+@app.route('/autolog/', methods=['GET'])
 def index():
     """Return the index page."""
     return render_template('index.html', cars=cars, logs=db.logReadAll(db.db))
