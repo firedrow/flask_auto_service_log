@@ -21,17 +21,14 @@ So that my Caddy config below makes a little more sense, I'm going to post all t
 **Docker folder structure**
 ```bash
 ~/docker
-  |
   |-- config/
   |    |-- caddy/
   |         |-- Caddyfile
   |         |-- www/
   |              |-- tools.domain.tld/
   |                   |-- web files
-  |
   |-- flask_autolog/
   |    |-- git sync'd repo
-  |      
   |-- docker-compose.yml
 ```
 
